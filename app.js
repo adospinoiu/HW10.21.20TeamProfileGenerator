@@ -10,6 +10,8 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+let employeeList = [];
+
 //User is prompted to select the type of employee they wish to enter information about
 let employeeType = " ";
 function getEmployeeType() {
@@ -27,13 +29,12 @@ function getEmployeeType() {
             },
         ])
         .then(function (answers) {
-            console.log(answers);
-
-            employeeType = answers.employeeType
+            employeeType = (answers.employeeType[0])
 
             console.log(employeeType);
 
-            getEmployeeNameIdEmail();
+            getEmployeeNameIdEmail();   
+
         })
 };
 
@@ -63,11 +64,24 @@ function getEmployeeNameIdEmail() {
             }
         ])
         .then(function (answers) {
-            console.log(answers);
+            employeeName = answers.employeeName;
+            employeeId = answers.employeeId;
+            employeeEmail = answers.employeeEmail;
+
+            console.log(employeeName);
+            console.log(employeeId);
+            console.log(employeeEmail);
+
+            if(employeeType === "Manager"){
+                getManagerOfficeNumber();
+            } else if(employeeType === "Engineer"){
+                getEngineerGitHub();
+            } else if(employeeType === "Intern"){
+                getInternSchool();
+            };
         })
 };
 
-// getEmployeeNameIdEmail();
 
 //User is prompted to enter the manager's office phone number
 let managerOfficeNumber = " ";
@@ -81,13 +95,20 @@ function getManagerOfficeNumber() {
             }
         ])
         .then(async function (answers) {
-            console.log(answers);
+            managerOfficeNumber = answers.officeNumber;
+
+            console.log(managerOfficeNumber);
+
+            const employee = new Manager(employeeName, employeeId, employeeEmail, managerOfficeNumber);
+
+            employeeList.push(employee);
+
+            console.log(employeeList);
         })
 };
 
-// getManagerOfficeNumber();
 
-//user is prompted to enter the engineer's GitHub username
+//User is prompted to enter the engineer's GitHub username
 let engineerGitHub = " ";
 function getEngineerGitHub() {
     inquirer
@@ -100,11 +121,18 @@ function getEngineerGitHub() {
             }
         ])
         .then(async function (answers) {
-            console.log(answers);
-        })
-}
+            engineerGitHub = answers.engineerGitHubUser;
 
-// getEngineerGitHub();
+            console.log(engineerGitHub);
+
+            const employee = new Engineer(employeeName, employeeId, employeeEmail, engineerGitHub);
+
+            employeeList.push(employee);
+
+            console.log(employeeList);
+        })
+};
+
 
 //user is prompted to enter the intern's school
 let internSchool = " ";
@@ -118,13 +146,18 @@ function getInternSchool() {
             }
         ])
         .then(async function (answers) {
-            console.log(answers);
+            internSchool = answers.internSchool;
 
-            console.log(answers.employeeName);
+            console.log(internSchool);
+
+            const employee = new Intern(employeeName, employeeId, employeeEmail, internSchool);
+
+            employeeList.push(employee);
+
+            console.log(employeeList);
         })
 };
 
-// getInternSchool();
 
 // inquirer
 //     .prompt([
