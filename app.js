@@ -10,63 +10,139 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-inquirer
-    .prompt([
-        {
-            type: "checkbox",
-            message: "Select 'employee type' to enter information about: ",
-            name: "employeeType",
-            choices: [
-                "Manager",
-                "Engineer",
-                "Intern"
-            ]          
-        },
-        {
-            type: "input",
-            message: "Enter the employee's first & last name: ",
-            name: "employeeName"
-        },
-        {
-            type: "input",
-            message: "Enter the employee's ID: ",
-            name: "employeeId"
-        },
-        {
-            type: "input",
-            message: "Enter the employee's email: ",
-            name: "employeeEmail"
-        },
-        {
-            type: "input",
-            message: "Enter the manager's office number: ",
-            name: "officeNumber"
-        },
-        {
-            type: "input",
-            message: "Enter the engineer's GitHub user ID: ",
-            name: "engineerGitHubUser"
-        },
-        {
-            type: "input",
-            message: "Enter the intern's school: ",
-            name: "internSchool"
-        },
-        {
-            type: "checkbox",
-            message: "Do you wish to enter information about more employees? ",
-            name: "additionalEmployees",
-            choices: [
-                "Yes",
-                "No (Generate Team Overview Webpage)"
-            ]
-        }
-    ])
-    .then(async function (answers) {
-        console.log(answers);
+//User is prompted to select the type of employee they wish to enter information about
+let employeeType = " ";
+function getEmployeeType() {
+    inquirer
+        .prompt([
+            {
+                type: "checkbox",
+                message: "Select 'employee type' to enter information about: ",
+                name: "employeeType",
+                choices: [
+                    "Manager",
+                    "Engineer",
+                    "Intern"
+                ]
+            },
+        ])
+        .then(function (answers) {
+            console.log(answers);
 
-        console.log(answers.employeeName);
-    })
+            employeeType = answers.employeeType
+
+            console.log(employeeType);
+
+            getEmployeeNameIdEmail();
+        })
+};
+
+getEmployeeType();
+
+//User is prompted to enter information about the employee: Name, ID, Email
+let employeeName = " ";
+let employeeId = " ";
+let employeeEmail = " ";
+function getEmployeeNameIdEmail() {
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "Enter the employee's first & last name: ",
+                name: "employeeName"
+            },
+            {
+                type: "input",
+                message: "Enter the employee's ID: ",
+                name: "employeeId"
+            },
+            {
+                type: "input",
+                message: "Enter the employee's email: ",
+                name: "employeeEmail"
+            }
+        ])
+        .then(function (answers) {
+            console.log(answers);
+        })
+};
+
+// getEmployeeNameIdEmail();
+
+//User is prompted to enter the manager's office phone number
+let managerOfficeNumber = " ";
+function getManagerOfficeNumber() {
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "Enter the manager's office number: ",
+                name: "officeNumber"
+            }
+        ])
+        .then(async function (answers) {
+            console.log(answers);
+        })
+};
+
+// getManagerOfficeNumber();
+
+//user is prompted to enter the engineer's GitHub username
+let engineerGitHub = " ";
+function getEngineerGitHub() {
+    inquirer
+        .prompt([
+
+            {
+                type: "input",
+                message: "Enter the engineer's GitHub user ID: ",
+                name: "engineerGitHubUser"
+            }
+        ])
+        .then(async function (answers) {
+            console.log(answers);
+        })
+}
+
+// getEngineerGitHub();
+
+//user is prompted to enter the intern's school
+let internSchool = " ";
+function getInternSchool() {
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "Enter the intern's school: ",
+                name: "internSchool"
+            }
+        ])
+        .then(async function (answers) {
+            console.log(answers);
+
+            console.log(answers.employeeName);
+        })
+};
+
+// getInternSchool();
+
+// inquirer
+//     .prompt([
+//         {
+//             type: "checkbox",
+//             message: "Do you wish to enter information about more employees? ",
+//             name: "additionalEmployees",
+//             choices: [
+//                 "Yes",
+//                 "No (Generate Team Overview Webpage)"
+//             ]
+//         }
+//     ])
+//     .then(async function (answers) {
+//         console.log(answers);
+
+//         console.log(answers.employeeName);
+//     })
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
