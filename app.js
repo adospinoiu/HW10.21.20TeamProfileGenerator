@@ -104,6 +104,8 @@ function getManagerOfficeNumber() {
             employeeList.push(employee);
 
             console.log(employeeList);
+
+            getAdditionalEmployees();
         })
 };
 
@@ -130,11 +132,13 @@ function getEngineerGitHub() {
             employeeList.push(employee);
 
             console.log(employeeList);
+
+            getAdditionalEmployees();
         })
 };
 
 
-//user is prompted to enter the intern's school
+//User is prompted to enter the intern's school
 let internSchool = " ";
 function getInternSchool() {
     inquirer
@@ -155,27 +159,46 @@ function getInternSchool() {
             employeeList.push(employee);
 
             console.log(employeeList);
+
+            getAdditionalEmployees();
+
         })
 };
 
 
-// inquirer
-//     .prompt([
-//         {
-//             type: "checkbox",
-//             message: "Do you wish to enter information about more employees? ",
-//             name: "additionalEmployees",
-//             choices: [
-//                 "Yes",
-//                 "No (Generate Team Overview Webpage)"
-//             ]
-//         }
-//     ])
-//     .then(async function (answers) {
-//         console.log(answers);
+//User is prompted to enter additional team members
+let additionalEmployees = " ";
+function getAdditionalEmployees() {
+inquirer
+    .prompt([
+        {
+            type: "checkbox",
+            message: "Do you wish to enter information about more employees? ",
+            name: "additionalEmployees",
+            choices: [
+                "Yes",
+                "No (Generate Team Overview Webpage)"
+            ]
+        }
+    ])
+    .then(async function (answers) {
+        additionalEmployees = answers.additionalEmployees[0];
+        
+        console.log(additionalEmployees);
 
-//         console.log(answers.employeeName);
-//     })
+        if(additionalEmployees === "Yes"){
+            getEmployeeType();
+        }
+
+        // if (additionalEmployees != "Yes"){
+        //     let employees = employeeList;
+        //     render(employees);
+        // };
+
+    })
+}
+
+
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
