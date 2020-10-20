@@ -188,12 +188,16 @@ inquirer
 
         if(additionalEmployees === "Yes"){
             getEmployeeType();
-        }
+        } else {
+            let html = render(employeeList);
 
-        // if (additionalEmployees != "Yes"){
-        //     let employees = employeeList;
-        //     render(employees);
-        // };
+            console.log(html);
+
+            fs.writeFile('team.html', html, 'utf8', (err) => {
+                if (err) throw err;
+                console.log("The file has been generated");
+            });
+        };
 
     })
 }
