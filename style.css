@@ -1,0 +1,20 @@
+.row {
+    background-color: rgb(120, 25, 243);
+}
+
+.card-body {
+    background-color: rgb(106, 108, 228);
+}
+
+.jumbotron {
+    background-color: rgb(198, 158, 238);
+    color: rgb(60, 62, 190);
+}
+
+.card-header {
+    background-color: rgb(106, 108, 228);
+}
+
+body {
+    background-color: rgb(198, 158, 238);
+}
