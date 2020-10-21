@@ -10,7 +10,10 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+
+//Array that will store all the employees entered by the user
 let employeeList = [];
+
 
 //User is prompted to select the type of employee they wish to enter information about
 let employeeType = " ";
@@ -39,6 +42,7 @@ function getEmployeeType() {
 };
 
 getEmployeeType();
+
 
 //User is prompted to enter information about the employee: Name, ID, Email
 let employeeName = " ";
@@ -166,7 +170,7 @@ function getInternSchool() {
 };
 
 
-//User is prompted to enter additional team members
+//User is prompted to enter additional team members or to generate the team.html page
 let additionalEmployees = " ";
 function getAdditionalEmployees() {
 inquirer
